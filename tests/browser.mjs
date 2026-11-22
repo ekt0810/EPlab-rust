@@ -40,7 +40,21 @@ async function navigate(p, url) {
   await p.waitForLoadState("networkidle");
 }
 async function clickSave(p, label) {
-  await p.getByRole("button", { name: label, exact: true }).click();
+  const button = p.getByRole("button", { name: label, exact: true });
+  const endpoint = await button.evaluate((el) => {
+    const form = el.closest("form");
+    return {
+      url: new URL(form.dataset.api, location.origin).href,
+      method: form.dataset.method || "POST",
+    };
+  });
+  const [response] = await Promise.all([
+    p.waitForResponse(
+      (r) => r.url() === endpoint.url && r.request().method() === endpoint.method,
+    ),
+    button.click(),
+  ]);
+  assert.equal(response.ok(), true, label + ": HTTP " + response.status());
   await p.waitForLoadState("networkidle");
 }
 async function login(p, email) {
@@ -133,6 +147,7 @@ try {
       .fill("Ghi chú được nhập từ trình duyệt.");
     await page.getByLabel("Đánh dấu hoàn thành bài").check();
     await clickSave(page, "Lưu tiến độ");
+    await page.getByText("Bạn đã hoàn thành bài học.", { exact: true }).waitFor();
     await navigate(page, "/lop-hoc/embedded/" + lesson.id);
     assert.equal(
       await page.getByLabel("Ghi chú riêng").inputValue(),
