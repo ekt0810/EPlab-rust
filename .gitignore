@@ -1,0 +1,14 @@
+/target/
+/data/
+/work/
+/test-results/
+/node_modules/
+.env
+.env.*
+!.env.example
+*.log
+*.pem
+*.key
+*.dump
+*.db
+*.tsbuildinfo

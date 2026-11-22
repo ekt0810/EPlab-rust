@@ -1,0 +1,64 @@
+<svg
+      class="ep-brand"
+      viewBox="0 0 280 200"
+      role="img"
+      aria-label="EP LAB — Embedded PTIT Lab"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <style>.logo-red{fill:#b91232}.logo-blue{fill:#073956}.logo-trace{stroke:#fff}.logo-rule{stroke:#073956}@media(prefers-color-scheme:dark){.logo-red{fill:#ed526c}.logo-blue{fill:#8ec8e8}.logo-trace{stroke:#17232f}.logo-rule{stroke:#8ec8e8}}</style><title>EP LAB — Embedded PTIT Lab</title>
+      <g transform="translate(5 0)">
+        <path
+          class="logo-red"
+          d="M92 12h72l-10 22h-54l-8 20h49l-10 22H82l-9 23h66l-10 23H41l37-93Q84 12 92 12Z"
+        />
+        <path
+          class="logo-blue"
+          d="M173 12h36c34 0 50 18 39 44-10 25-31 36-61 36h-16l-13 30h-29Z"
+        />
+        <g
+          class="logo-trace"
+          fill="none"
+          stroke-width="5.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M57 96c17-22 27-29 53-29h12" />
+          <circle cx="129" cy="67" r="6" />
+          <path d="M92 109h36c22 0 34-37 52-40h13" />
+          <circle cx="200" cy="69" r="6" />
+          <path d="M180 34q22-21 44 0M185 44q17-16 34 0M191 53q11-10 22 0" />
+        </g>
+      </g>
+      <text
+        x="140"
+        y="162"
+        text-anchor="middle"
+        font-family="Arial, sans-serif"
+        font-size="48"
+        font-weight="900"
+        letter-spacing="-1"
+      >
+        <tspan class="logo-red">EP</tspan>
+        <tspan class="logo-blue" dx="9">
+          LAB
+        </tspan>
+      </text>
+      <path
+        class="logo-rule"
+        d="M14 184h16m220 0h16"
+        fill="none"
+        stroke-width="1.5"
+      />
+      <text
+        class="logo-blue"
+        x="140"
+        y="190"
+        text-anchor="middle"
+        font-family="Arial, sans-serif"
+        font-size="19"
+        font-weight="700"
+        letter-spacing="0.4"
+      >
+        EMBEDDED PTIT LAB
+      </text>
+    </svg>

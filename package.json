@@ -1,0 +1,19 @@
+{
+  "name": "eplab-rust-checks",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Development and verification tools only. The website runs as a native Rust executable.",
+  "scripts": {
+    "db:start": "node scripts/dev-db.mjs start",
+    "db:stop": "node scripts/dev-db.mjs stop",
+    "test": "node --test --test-concurrency=1 tests/api.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "bench": "node scripts/benchmark.mjs"
+  },
+  "devDependencies": {
+    "embedded-postgres": "18.6.0-beta.19",
+    "pg": "8.23.1",
+    "playwright": "1.65.1"
+  }
+}

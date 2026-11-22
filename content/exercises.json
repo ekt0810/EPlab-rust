@@ -1,0 +1,2281 @@
+[
+  {
+    "id": "e01",
+    "module": 1,
+    "title": "Từ ý tưởng đến sơ đồ khối",
+    "difficulty": "Cơ bản",
+    "minutes": 25,
+    "brief": "Thiết kế ý tưởng bo LED dùng nguồn DC 5 V. Hãy mô tả đường dòng và cấu trúc project trước khi vẽ schematic.",
+    "deliverables": [
+      "Ảnh Project Manager thấy project và các tệp thiết kế.",
+      "Ảnh sơ đồ khối có nguồn, điện trở, LED và GND."
+    ],
+    "steps": [
+      "Tạo project led-practice.",
+      "Vẽ khối nguồn 5 V → R → LED → GND.",
+      "Ghi giả định LED đỏ Vf≈2 V, R=1 kΩ và dòng ước tính 3 mA.",
+      "Chụp rõ nội dung, không chụp toàn bộ desktop thu nhỏ."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Project có schematic và PCB cùng tên gốc.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Sơ đồ có nguồn 5 V và đường trở về GND.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Điện trở nằm nối tiếp với LED.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Ghi đúng phép tính dòng gần 3 mA theo giả định.",
+        "points": 25
+      }
+    ],
+    "reference": "led",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "basic",
+    "order": 1,
+    "prerequisites": []
+  },
+  {
+    "id": "e02",
+    "module": 1,
+    "title": "Phiếu chọn linh kiện và tính toán",
+    "difficulty": "Cơ bản",
+    "minutes": 35,
+    "brief": "Lập phiếu kỹ thuật cho bo LED: đầu nối 2 chân, LED đỏ, điện trở 1 kΩ. Chọn mã thực tế và ghi nguồn datasheet.",
+    "deliverables": [
+      "Ảnh bảng mã hàng, package, pinout và link datasheet.",
+      "Ảnh phép tính dòng/công suất cùng giả định."
+    ],
+    "steps": [
+      "Chọn mã linh kiện đầy đủ từ một nhà sản xuất.",
+      "Ghi package và cực tính LED.",
+      "Tính I=(5−2)/1000=0,003 A; P_R=0,009 W theo giả định.",
+      "Đối chiếu dòng/áp định mức thực của các mã đã chọn."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Bảng có mã hàng cụ thể cho LED và điện trở.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Package và pinout/cực tính được ghi rõ.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Dòng và công suất tính đúng theo giả định của đề.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Có nguồn datasheet và phân biệt giả định với thông số thật.",
+        "points": 25
+      }
+    ],
+    "reference": "worksheet",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "basic",
+    "order": 2,
+    "prerequisites": [
+      "e01"
+    ]
+  },
+  {
+    "id": "e03",
+    "module": 2,
+    "title": "Mạch LED có điện trở hạn dòng",
+    "difficulty": "Cơ bản",
+    "minutes": 45,
+    "brief": "Vẽ J1 hai chân cấp DC 5 V, R1=1 kΩ và D1 LED đỏ. Nối J1.1 → R1 → anode D1; cathode D1 → J1.2/GND.",
+    "deliverables": [
+      "Ảnh schematic rõ reference, value, pin và dây.",
+      "Ảnh ERC; giải thích cảnh báo còn lại trong ghi chú."
+    ],
+    "steps": [
+      "Đặt symbol và chú thích J1.1=+5V, J1.2=GND.",
+      "Nối mạch đúng chuỗi; kiểm tra highlight net.",
+      "Gán reference/value.",
+      "Chạy ERC và lưu ảnh; PWR_FLAG chỉ dùng đúng mô hình nguồn ngoài."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Có J1 hai chân, R1=1 kΩ và D1.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Đường nối thấy rõ từ nguồn qua R1 tới anode LED.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Cathode nối về GND, không có dây bắc cầu qua R1/LED.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Reference, value và kết quả ERC đọc được, ngoại lệ có giải thích.",
+        "points": 25
+      }
+    ],
+    "reference": "led",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "basic",
+    "order": 3,
+    "prerequisites": [
+      "e02"
+    ]
+  },
+  {
+    "id": "e04",
+    "module": 2,
+    "title": "Sửa lỗi schematic bằng ERC",
+    "difficulty": "Cơ bản",
+    "minutes": 35,
+    "brief": "Từ mạch LED, thử tạo một lỗi hở rồi tìm và sửa. Nộp kết quả sau sửa cùng mô tả lỗi ban đầu.",
+    "deliverables": [
+      "Ảnh schematic sau sửa.",
+      "Ảnh ERC cuối cùng và ghi chú nguyên nhân lỗi."
+    ],
+    "steps": [
+      "Tạo bản sao project trước khi thử.",
+      "Ngắt một dây, chạy ERC và tìm vị trí lỗi.",
+      "Sửa kết nối, highlight net và chạy lại.",
+      "Ghi tại sao lỗi xuất hiện, không chỉ ghi “đã fix”."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Ảnh schematic có đầy đủ vòng nguồn–R–LED–GND.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "ERC cuối cùng được hiển thị rõ.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Ghi chú chỉ ra lỗi ban đầu và nguyên nhân.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Các cảnh báo còn lại được giải thích thay vì tắt toàn bộ kiểm tra.",
+        "points": 25
+      }
+    ],
+    "reference": "led",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "basic",
+    "order": 4,
+    "prerequisites": [
+      "e03"
+    ]
+  },
+  {
+    "id": "e05",
+    "module": 3,
+    "title": "Đối chiếu pin và pad",
+    "difficulty": "Trung cấp",
+    "minutes": 45,
+    "brief": "Gán footprint cho mạch LED. Lập bảng chứng minh pin symbol khớp pad và cực tính linh kiện.",
+    "deliverables": [
+      "Ảnh bảng pin/pad/chức năng cho J1 và D1.",
+      "Ảnh footprint thể hiện số pad và dấu pin 1/cực tính."
+    ],
+    "steps": [
+      "Đọc package thực của linh kiện.",
+      "Chọn footprint đúng pitch và kích thước.",
+      "Ghi mapping pin 1/2 tới pad 1/2 và chức năng.",
+      "Kiểm tra riêng LED anode/cathode theo symbol và datasheet."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Có tên footprint đầy đủ và package đã chọn.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Bảng đối chiếu số pin/pad cho J1 và D1 rõ ràng.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Cực tính LED được nêu và nhất quán với bảng.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Ảnh footprint đọc được số pad, pin 1 và kích thước/pitch.",
+        "points": 25
+      }
+    ],
+    "reference": "footprint",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "intermediate",
+    "order": 5,
+    "prerequisites": [
+      "e04"
+    ]
+  },
+  {
+    "id": "e06",
+    "module": 4,
+    "title": "Bo LED 40 × 30 mm",
+    "difficulty": "Trung cấp",
+    "minutes": 45,
+    "brief": "Tạo layout bo hai lớp, outline kín 40×30 mm trên Edge.Cuts. Đặt J1 ở cạnh bo, R1 và D1 trong vùng bo.",
+    "deliverables": [
+      "Ảnh PCB hiện kích thước/đường biên.",
+      "Ảnh Board Setup hoặc DRC thể hiện quy tắc bài tập."
+    ],
+    "steps": [
+      "Update PCB from Schematic.",
+      "Vẽ outline kín 40×30 mm.",
+      "Dùng clearance/width minh họa 0,25 mm và ghi đây là quy tắc bài tập.",
+      "Đặt linh kiện không vượt biên; kiểm tra outline bằng DRC."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Có đường biên kín ở Edge.Cuts và kích thước 40×30 mm hiển thị.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "J1, R1, D1 đều nằm trong bo.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "J1 ở vị trí có thể cắm từ cạnh bo.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Quy tắc bài tập và kết quả kiểm tra outline được cung cấp.",
+        "points": 25
+      }
+    ],
+    "reference": "board",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "intermediate",
+    "order": 6,
+    "prerequisites": [
+      "e05"
+    ]
+  },
+  {
+    "id": "e07",
+    "module": 4,
+    "title": "Placement bo vi điều khiển",
+    "difficulty": "Trung cấp",
+    "minutes": 60,
+    "brief": "Dùng project MCU tự chọn hoặc project đồ án để đặt connector, MCU, tụ decoupling và SWD. Chưa cần route hoàn chỉnh.",
+    "deliverables": [
+      "Ảnh placement toàn bo có ratsnest.",
+      "Ảnh cận MCU và tụ nguồn."
+    ],
+    "steps": [
+      "Đặt connector theo cơ khí trước.",
+      "Đặt MCU cùng tụ theo chân nguồn của datasheet.",
+      "Đưa SWD ra vị trí dễ cắm.",
+      "Ghi hai quyết định placement và đường hồi dự kiến."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Connector/lỗ cơ khí có vị trí và khoảng thao tác rõ.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "MCU và các tụ nguồn có reference đọc được.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Tụ bố trí gần vùng chân nguồn, đường hồi được giải thích.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "SWD có pinout và vị trí tiếp cận hợp lý.",
+        "points": 25
+      }
+    ],
+    "reference": "mcu",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "intermediate",
+    "order": 7,
+    "prerequisites": [
+      "e06"
+    ]
+  },
+  {
+    "id": "e08",
+    "module": 5,
+    "title": "Route mạch LED hoàn chỉnh",
+    "difficulty": "Trung cấp",
+    "minutes": 60,
+    "brief": "Route bo LED với đúng net, không còn kết nối chưa đi dây. Giữ outline và quy tắc đã tạo ở bài trước.",
+    "deliverables": [
+      "Ảnh layout đọc rõ track và pad.",
+      "Ảnh DRC có số kết nối chưa route."
+    ],
+    "steps": [
+      "Route nguồn → R1 → D1 → GND.",
+      "Kiểm tra mỗi track đúng net và chạm pad.",
+      "Nếu dùng via, kiểm tra kết nối hai lớp.",
+      "Chạy DRC và xử lý lỗi; ghi ngoại lệ nếu có."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Layout có đầy đủ J1, R1 và D1.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Các đường nối quan sát được nhất quán với mạch LED.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Không có đường đồng bắc cầu rõ ràng giữa hai net khác nhau.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Ảnh DRC hiển thị 0 kết nối chưa route và ngoại lệ được giải thích.",
+        "points": 25
+      }
+    ],
+    "reference": "board",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "intermediate",
+    "order": 8,
+    "prerequisites": [
+      "e07"
+    ]
+  },
+  {
+    "id": "e09",
+    "module": 5,
+    "title": "Review GND zone",
+    "difficulty": "Nâng cao",
+    "minutes": 45,
+    "brief": "Tạo GND zone trên bo LED hoặc bo MCU. Kiểm tra các đảo đồng và đường hồi sau khi refill.",
+    "deliverables": [
+      "Ảnh layout đã refill, hiện tên net/lớp.",
+      "Ảnh cận vùng dễ bị cắt hoặc ghi chú đánh dấu đường hồi."
+    ],
+    "steps": [
+      "Gán zone cho GND, refill.",
+      "Highlight GND để kiểm tra tính liên tục.",
+      "Tìm vùng bị track chia cắt và thử cải thiện.",
+      "Ghi kết quả review cùng giới hạn ảnh không thể chứng minh."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Zone được thể hiện đã refill và thuộc GND.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Ảnh cho thấy kết nối tới pad hoặc via GND.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Đường hồi dự kiến được giải thích bằng ghi chú cụ thể.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Có nhận xét về đảo đồng/khe cắt, không chỉ ghi “đạt”.",
+        "points": 25
+      }
+    ],
+    "reference": "board",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "advanced",
+    "order": 9,
+    "prerequisites": [
+      "e08"
+    ]
+  },
+  {
+    "id": "e10",
+    "module": 6,
+    "title": "Review nguồn 3,3 V và decoupling",
+    "difficulty": "Nâng cao",
+    "minutes": 60,
+    "brief": "Thiết kế/review khối LDO 5 V → 3,3 V, dòng giả định 100 mA và tụ gần MCU. Dùng đúng datasheet LDO/MCU bạn chọn.",
+    "deliverables": [
+      "Ảnh schematic khối nguồn và mã IC.",
+      "Ảnh layout khối nguồn/MCU với tụ và GND."
+    ],
+    "steps": [
+      "Ghi yêu cầu tụ/ESR và dropout từ datasheet.",
+      "Tính tổn hao xấp xỉ 0,17 W.",
+      "Đánh dấu vòng dòng qua tụ input/output và decoupling.",
+      "Ghi phần nhiệt chưa được xác minh bằng đo hoặc mô phỏng."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Schematic có mã LDO và tụ input/output theo ghi chú datasheet.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Phép tính công suất và giả định dòng được nêu đúng.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Layout cho thấy vị trí tụ liên quan tới chân nguồn.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Đường GND/vòng dòng và giới hạn kiểm tra nhiệt được giải thích.",
+        "points": 25
+      }
+    ],
+    "reference": "mcu",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "advanced",
+    "order": 10,
+    "prerequisites": [
+      "e09"
+    ]
+  },
+  {
+    "id": "e11",
+    "module": 7,
+    "title": "Bộ hồ sơ kiểm tra trước sản xuất",
+    "difficulty": "Nâng cao",
+    "minutes": 60,
+    "brief": "Tạo bộ hồ sơ cho bo LED: ERC, DRC, Gerber/drill và checklist. Ảnh chỉ giúp review hồ sơ, không chứng nhận bo được phép sản xuất.",
+    "deliverables": [
+      "Ảnh báo cáo ERC/DRC hoặc bảng tổng hợp có giá trị cụ thể.",
+      "Ảnh Gerber Viewer thể hiện outline, đồng và lỗ."
+    ],
+    "steps": [
+      "Refill zone và chạy ERC/DRC.",
+      "Xuất Gerber/drill vào thư mục revision riêng.",
+      "Mở đúng đầu ra vừa xuất trong viewer.",
+      "Ghi danh sách tệp, revision và mọi ngoại lệ chưa xử lý."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Có kết quả ERC và DRC đọc được, cùng revision.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Gerber Viewer cho thấy outline và lớp đồng.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Drill/lỗ được thể hiện hoặc đối chiếu trong hồ sơ.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Checklist nêu revision, tệp xuất và ngoại lệ/giới hạn.",
+        "points": 25
+      }
+    ],
+    "reference": "board",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "advanced",
+    "order": 11,
+    "prerequisites": [
+      "e10"
+    ]
+  },
+  {
+    "id": "e12",
+    "module": 8,
+    "title": "Đồ án tốt nghiệp: bo STM32",
+    "difficulty": "Nâng cao",
+    "minutes": 180,
+    "brief": "Thiết kế bo STM32 nguồn 5 V → 3,3 V, SWD, LED và I²C header. Nộp hai ảnh rõ cùng ghi chú mã MCU, datasheet, ERC/DRC và các quyết định kỹ thuật.",
+    "deliverables": [
+      "Ảnh schematic đủ rõ thấy nguồn, MCU, SWD và giao tiếp.",
+      "Ảnh PCB thể hiện placement, routing và mặt tham chiếu."
+    ],
+    "steps": [
+      "Chốt mã MCU/package và lập yêu cầu.",
+      "Hoàn thành schematic, pin mapping, ERC.",
+      "Layout theo cơ khí, đường dòng và decoupling; chạy DRC.",
+      "Nộp ghi chú review; giữ project gốc để kiểm tra thủ công khi ảnh chưa đủ."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Schematic thể hiện khối nguồn, đúng mã MCU và xử lý các chân nguồn/boot/reset theo ghi chú.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "SWD, LED và I²C header có kết nối/pinout đọc được.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "PCB cho thấy placement tụ, nguồn và connector có giải thích hợp lý.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Có kết quả ERC/DRC, revision và kế hoạch kiểm thử phần cứng, không tuyên bố ảnh chứng minh mạch chạy.",
+        "points": 25
+      }
+    ],
+    "reference": "mcu",
+    "version": "1.0",
+    "passScore": 75,
+    "track": "kicad",
+    "level": "advanced",
+    "order": 12,
+    "prerequisites": [
+      "e11"
+    ]
+  },
+  {
+    "id": "c01",
+    "module": 1,
+    "title": "Kiểu dữ liệu và quy đổi ADC",
+    "minutes": 45,
+    "brief": "Viết hàm đổi mẫu ADC 12 bit (0–4095) sang millivolt với Vref = 3300 mV. Bài chạy trên máy tính, chưa cần board.",
+    "learn": [
+      "Dùng <stdint.h> để biểu diễn rõ độ rộng số nguyên. Phép chia số nguyên bỏ phần lẻ; nêu quy tắc làm tròn trong bài làm.",
+      "Với đầu vào đã giới hạn, tính raw * 3300 bằng uint32_t rồi chia 4095. Không nhân bằng kiểu có thể tràn trước khi ép kiểu."
+    ],
+    "starter": "#include <stdint.h>\n#include <stdbool.h>\nbool adc_to_mv(uint16_t raw, uint16_t *mv);\n/* false khi raw > 4095 hoặc mv == NULL; không sửa đầu ra khi lỗi. */",
+    "steps": [
+      "Cài compiler C trên máy, ghi phiên bản; tạo main.c và chạy cảnh báo biên dịch.",
+      "Cài hàm adc_to_mv theo hợp đồng, làm tròn xuống; viết main chạy từng ca kiểm tra.",
+      "In đầu vào, kết quả thực tế, kết quả mong đợi và PASS/FAIL; giải thích vì sao cần kiểu trung gian 32 bit."
+    ],
+    "checks": [
+      [
+        "raw=0 / 4095",
+        "Thành công, lần lượt 0 / 3300 mV"
+      ],
+      [
+        "raw=2048",
+        "1650 mV khi chia nguyên"
+      ],
+      [
+        "raw=4096, mv trỏ đến giá trị 77",
+        "false; mv vẫn là 77"
+      ],
+      [
+        "mv=NULL",
+        "false, không truy cập con trỏ null"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Kiểu dữ liệu và biểu thức tính tránh tràn trong toàn miền 0–4095.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Đổi đúng cả biên và mẫu giữa theo quy tắc làm tròn.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Đầu vào lỗi/con trỏ null được xử lý đúng hợp đồng.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp nguồn, lệnh build và log đủ bốn nhóm ca kiểm tra.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "difficulty": "Cơ bản",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Mã nguồn .c/.h (tối đa 6 tệp), README .txt/.md nếu cần; ghi compiler/board hoặc mô phỏng và lệnh build.",
+      "1–2 ảnh kết quả chạy/debug; log các ca kiểm tra, kết quả thực tế và phần chưa đạt trong ghi chú hoặc .txt."
+    ],
+    "level": "basic",
+    "order": 1,
+    "prerequisites": []
+  },
+  {
+    "id": "c02",
+    "module": 2,
+    "title": "Đặt, xóa và đọc bit an toàn",
+    "minutes": 50,
+    "brief": "Tạo module flags.c/flags.h thao tác uint32_t; chỉ số bit hợp lệ từ 0 đến 31, chỉ số sai phải được từ chối.",
+    "reading": {
+      "slug": "embedded-thuc-hanh",
+      "label": "Bài nền tảng C: điều khiển trạng thái bằng bit (nếu đã được giảng viên xuất bản)"
+    },
+    "learn": [
+      "OR đặt bit, AND với mặt nạ đảo xóa bit, AND kiểm tra bit. Mặt nạ dùng UINT32_C(1).",
+      "Kiểm tra n < 32 trước khi dịch; bài dùng biến RAM thông thường, không giả định thanh ghi ngoại vi đều cho phép read-modify-write."
+    ],
+    "steps": [
+      "Định nghĩa API trả bool báo hợp lệ, nhận con trỏ uint32_t và chỉ số bit; kiểm tra con trỏ trước truy cập.",
+      "Từ flags=0, đặt bit 2/7, xóa bit 2 rồi đọc hai bit.",
+      "Tách header/source; viết log cho bit 0,31,32 và con trỏ null."
+    ],
+    "checks": [
+      [
+        "Đặt bit 2 rồi 7 từ 0",
+        "0x00000084"
+      ],
+      [
+        "Xóa bit 2",
+        "0x00000080; bit 7 bật, bit 2 tắt"
+      ],
+      [
+        "Đặt bit 31 từ 0",
+        "0x80000000"
+      ],
+      [
+        "n=32 hoặc con trỏ null",
+        "Báo lỗi, không dịch hoặc đổi dữ liệu"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Ba phép toán bit đúng và dùng mặt nạ unsigned.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Từ chối n ngoài miền và con trỏ null.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Tách module/header rõ, không dùng biến toàn cục không cần thiết.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nguồn và log thể hiện đủ ca biên, kết quả hex đúng.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "difficulty": "Cơ bản",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Mã nguồn .c/.h (tối đa 6 tệp), README .txt/.md nếu cần; ghi compiler/board hoặc mô phỏng và lệnh build.",
+      "1–2 ảnh kết quả chạy/debug; log các ca kiểm tra, kết quả thực tế và phần chưa đạt trong ghi chú hoặc .txt."
+    ],
+    "level": "basic",
+    "order": 2,
+    "prerequisites": [
+      "c01"
+    ]
+  },
+  {
+    "id": "c03",
+    "module": 3,
+    "title": "Bộ đệm vòng cho dữ liệu UART",
+    "minutes": 80,
+    "brief": "Cài FIFO dung lượng 4 byte với push/pop trả bool. Từ chối ghi khi đầy, không ghi đè byte chưa đọc; chưa dùng ngắt hoặc đa luồng.",
+    "learn": [
+      "FIFO trả dữ liệu theo thứ tự vào trước ra trước. Dùng head, tail và count để phân biệt đầy/rỗng.",
+      "Mọi truy cập mảng phải trong 0..3. Mô hình đơn luồng này chưa giải quyết đồng bộ giữa ISR và main."
+    ],
+    "steps": [
+      "Viết struct ring có mảng 4 byte, chỉ số và số phần tử; khởi tạo trạng thái rỗng.",
+      "Cài push/pop, kiểm tra con trỏ và trạng thái, không thay đầu ra khi pop thất bại.",
+      "Cho chỉ số đi vòng nhiều lần, in giá trị lấy ra và trạng thái sau mỗi thao tác."
+    ],
+    "checks": [
+      [
+        "pop khi rỗng",
+        "false; đầu ra giữ nguyên"
+      ],
+      [
+        "push 1,2,3,4 rồi 5",
+        "Bốn lần đầu true; 5 bị từ chối"
+      ],
+      [
+        "pop hai byte, push 5,6 rồi pop hết",
+        "Thứ tự lần lượt 1,2 rồi 3,4,5,6"
+      ],
+      [
+        "Lặp 100 chu kỳ push/pop",
+        "Không mất thứ tự, count luôn trong 0..4"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "FIFO đúng thứ tự và đi vòng đúng.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Xử lý đầy/rỗng mà không mất hoặc ghi đè dữ liệu.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Có kiểm tra con trỏ, chỉ số và bất biến count.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp module, log kiểm thử gồm ca đi vòng và nêu giới hạn đơn luồng.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "difficulty": "Cơ bản",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Mã nguồn .c/.h (tối đa 6 tệp), README .txt/.md nếu cần; ghi compiler/board hoặc mô phỏng và lệnh build.",
+      "1–2 ảnh kết quả chạy/debug; log các ca kiểm tra, kết quả thực tế và phần chưa đạt trong ghi chú hoặc .txt."
+    ],
+    "level": "basic",
+    "order": 3,
+    "prerequisites": [
+      "c02"
+    ]
+  },
+  {
+    "id": "c04",
+    "module": 4,
+    "title": "LED nhấp nháy không chặn bằng tick",
+    "minutes": 60,
+    "brief": "Đảo LED mỗi 500 ms bằng uint32_t tick; hàm update không dùng delay. Có thể mô phỏng tick trên máy trước khi nạp board.",
+    "learn": [
+      "Tính thời gian đã qua bằng hiệu unsigned now-last để xử lý tick quay vòng, với khoảng kiểm tra nhỏ hơn một chu kỳ đầy đủ.",
+      "Đề quy định mỗi lần update đủ 500 ms chỉ đảo một lần và gán last=now; không bù nhiều nhịp khi update trễ."
+    ],
+    "steps": [
+      "Khởi tạo LED tắt, last=0. Cài hàm update và hàm xuất GPIO giả lập.",
+      "Chạy chuỗi tick 0,499,500,999,1000; ghi trạng thái LED.",
+      "Kiểm thử quay vòng và bước thời gian bị trễ; nếu dùng board, ghi đúng chân LED/cực tính, không suy đoán theo board khác."
+    ],
+    "checks": [
+      [
+        "Tick 0,499,500,999,1000",
+        "LED lần lượt tắt,tắt,bật,bật,tắt"
+      ],
+      [
+        "last=0xFFFFFF00, now=0x000000F4",
+        "Hiệu = 500; đảo một lần"
+      ],
+      [
+        "last=0, now=1600",
+        "Chỉ đảo một lần; last=1600"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Logic mốc 500 ms đúng, không chặn luồng bằng delay.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Kiểm tra qua điểm quay vòng uint32_t đúng.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Mô phỏng GPIO hoặc cấu hình board/đấu nối được ghi rõ.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nguồn và log chứng minh các ca thời gian thường/trễ/quay vòng.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "difficulty": "Cơ bản",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Mã nguồn .c/.h (tối đa 6 tệp), README .txt/.md nếu cần; ghi compiler/board hoặc mô phỏng và lệnh build.",
+      "1–2 ảnh kết quả chạy/debug; log các ca kiểm tra, kết quả thực tế và phần chưa đạt trong ghi chú hoặc .txt."
+    ],
+    "level": "basic",
+    "order": 4,
+    "prerequisites": [
+      "c03"
+    ]
+  },
+  {
+    "id": "c05",
+    "module": 5,
+    "title": "Chống dội nút nhấn bằng máy trạng thái",
+    "minutes": 75,
+    "brief": "Nút active-low, ban đầu nhả (1). Chỉ xác nhận trạng thái mới sau 20 ms ổn định; mỗi lần nhấn tăng bộ đếm đúng một lần.",
+    "learn": [
+      "Tách mức đọc tức thời, trạng thái ứng viên và trạng thái đã xác nhận. Mỗi lần mức thô đổi thì bắt đầu lại mốc ổn định.",
+      "Đếm theo cạnh chuyển đã xác nhận từ nhả sang nhấn; giữ nút không được đếm lặp."
+    ],
+    "steps": [
+      "Viết debounce_update(raw, now) bằng C; không dùng delay hoặc vòng đợi.",
+      "Dùng bảng thời điểm/mức thô để tạo dội nút và ghi sự kiện nhấn.",
+      "Thử giữ nút, nhả bị dội và tick quay vòng; nếu có board, ghi điện trở kéo và cực tính."
+    ],
+    "checks": [
+      [
+        "(ms,mức): (0,1),(5,0),(8,1),(11,0),(30,0),(31,0)",
+        "Chỉ tăng bộ đếm tại 31 ms"
+      ],
+      [
+        "Giữ mức 0 đến 500 ms",
+        "Không phát sinh lần nhấn mới"
+      ],
+      [
+        "Nhả ổn định 20 ms rồi nhấn ổn định 20 ms",
+        "Tăng thêm đúng một lần"
+      ],
+      [
+        "Xung 0 ngắn 10 ms rồi về 1",
+        "Không tính là nhấn"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Xác nhận trạng thái sau đủ 20 ms liên tục.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Đếm theo cạnh; không đếm giữ nút hoặc xung ngắn.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Có trạng thái khởi tạo và xử lý tick quay vòng.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nguồn, bảng thời gian và log chỉ ra các lần phát sự kiện.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "difficulty": "Trung cấp",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Mã nguồn .c/.h (tối đa 6 tệp), README .txt/.md nếu cần; ghi compiler/board hoặc mô phỏng và lệnh build.",
+      "1–2 ảnh kết quả chạy/debug; log các ca kiểm tra, kết quả thực tế và phần chưa đạt trong ghi chú hoặc .txt."
+    ],
+    "level": "intermediate",
+    "order": 5,
+    "prerequisites": [
+      "c04"
+    ]
+  },
+  {
+    "id": "c06",
+    "module": 6,
+    "title": "Bộ phân tích lệnh UART theo dòng",
+    "minutes": 90,
+    "brief": "Nhận từng byte; chấp nhận LED ON, LED OFF, STATUS kết thúc bằng LF hoặc CRLF. Bộ đệm 32 byte kể cả ký tự kết thúc chuỗi.",
+    "learn": [
+      "Luồng UART có thể chia nhỏ ở mọi vị trí; không giả định một lần nhận bằng một lệnh.",
+      "Khi dòng vượt 31 byte, bỏ cả dòng đến LF và báo một lỗi; không xử lý phần bị cắt như lệnh hợp lệ."
+    ],
+    "steps": [
+      "Tách hàm feed(byte) khỏi xử lý lệnh; không dùng gets hoặc ghi vượt mảng.",
+      "Chỉ xử lý khi đủ dòng; loại CR trước LF; lệnh sai trả ERR, STATUS trả ON/OFF theo trạng thái.",
+      "Ghi transcript đầu vào/phản hồi cho dòng đúng, sai, quá dài và dòng hợp lệ sau lỗi."
+    ],
+    "checks": [
+      [
+        "LED ON\\n rồi STATUS\\r\\n",
+        "OK rồi ON"
+      ],
+      [
+        "LED OFF gửi từng byte rồi LF",
+        "Chỉ thực hiện sau LF; phản hồi OK"
+      ],
+      [
+        "HELLO\\n",
+        "ERR, trạng thái LED giữ nguyên"
+      ],
+      [
+        "40 ký tự A + LF rồi LED OFF + LF",
+        "Một ERR cho dòng dài, sau đó OK; không tràn bộ đệm"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Nhận dòng phân mảnh và LF/CRLF đúng.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Lệnh và phản hồi đúng; không thực hiện lệnh chưa hoàn tất.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Chặn tràn, bỏ dòng dài và phục hồi cho dòng tiếp theo.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nguồn và transcript chứng minh đủ các tình huống lỗi/đúng.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "difficulty": "Trung cấp",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Mã nguồn .c/.h (tối đa 6 tệp), README .txt/.md nếu cần; ghi compiler/board hoặc mô phỏng và lệnh build.",
+      "1–2 ảnh kết quả chạy/debug; log các ca kiểm tra, kết quả thực tế và phần chưa đạt trong ghi chú hoặc .txt."
+    ],
+    "level": "intermediate",
+    "order": 6,
+    "prerequisites": [
+      "c05"
+    ]
+  },
+  {
+    "id": "c07",
+    "module": 7,
+    "title": "Lọc trung bình trượt tín hiệu ADC",
+    "minutes": 70,
+    "brief": "Tạo bộ lọc cửa sổ 4 mẫu uint16_t trong miền 0–4095. Trong thời gian khởi động, chia cho số mẫu đã có; làm tròn xuống.",
+    "learn": [
+      "Giữ tổng bằng uint32_t và cập nhật bằng cách trừ mẫu cũ, cộng mẫu mới; không dùng tổng 16 bit cho cửa sổ tùy ý.",
+      "Mẫu ngoài miền phải bị từ chối mà không thay đổi lịch sử; nêu rõ độ trễ do lọc."
+    ],
+    "steps": [
+      "Tạo struct lưu bốn mẫu, count, index, sum và hàm reset.",
+      "Viết hàm nhận mẫu trả giá trị trung bình hoặc báo lỗi; không dùng heap.",
+      "So sánh với cách tính lại tổng từng bước và kiểm tra sau reset."
+    ],
+    "checks": [
+      [
+        "100,200,300,400",
+        "Đầu ra 100,150,200,250"
+      ],
+      [
+        "Thêm 500 sau chuỗi trên",
+        "350 (cửa sổ 200,300,400,500)"
+      ],
+      [
+        "Mẫu 4096",
+        "Báo lỗi, cửa sổ không đổi"
+      ],
+      [
+        "Reset rồi nhận 0,4095",
+        "0 rồi 2047"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Trung bình đúng khi khởi động và khi cửa sổ đầy.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Tổng/chỉ số đi vòng an toàn, không dùng cấp phát động.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Mẫu sai và reset xử lý đúng, không làm hỏng lịch sử.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nguồn, log và giải thích ảnh hưởng của lọc đến tín hiệu.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "difficulty": "Trung cấp",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Mã nguồn .c/.h (tối đa 6 tệp), README .txt/.md nếu cần; ghi compiler/board hoặc mô phỏng và lệnh build.",
+      "1–2 ảnh kết quả chạy/debug; log các ca kiểm tra, kết quả thực tế và phần chưa đạt trong ghi chú hoặc .txt."
+    ],
+    "level": "intermediate",
+    "order": 7,
+    "prerequisites": [
+      "c06"
+    ]
+  },
+  {
+    "id": "c08",
+    "module": 8,
+    "title": "Đồ án C: trạm đo cảm biến tối giản",
+    "minutes": 150,
+    "brief": "Ghép module lấy mẫu 100 ms, lọc bốn mẫu, LED cảnh báo có hysteresis và lệnh STATUS. Dùng mẫu ADC mô phỏng hoặc board do bạn chọn.",
+    "learn": [
+      "Tách logic thuần C khỏi driver để kiểm thử bằng dữ liệu giả lập. Báo cáo mô phỏng và đo trên board là hai loại bằng chứng khác nhau.",
+      "Cảnh báo bật khi giá trị lọc ≥2500 mV, tắt khi ≤2300 mV, giữ trạng thái trong khoảng giữa. Đặt hệ thống ban đầu không cảnh báo."
+    ],
+    "steps": [
+      "Tách ít nhất module sensor/filter, alarm, command và main; ghi sơ đồ dữ liệu.",
+      "Mỗi 100 ms lấy một mẫu, chuyển đổi/lọc, cập nhật cảnh báo; STATUS trả giá trị và trạng thái, không chặn bằng delay dài.",
+      "Viết kiểm thử độc lập hysteresis, tick quay vòng và dữ liệu ADC lỗi; nêu giới hạn demo và kế hoạch thử board."
+    ],
+    "checks": [
+      [
+        "Đưa trực tiếp vào alarm: 2200,2500,2400,2300 mV",
+        "OFF,ON,ON,OFF"
+      ],
+      [
+        "STATUS khi hệ thống đang lấy mẫu",
+        "Trả thông tin, lịch lấy mẫu vẫn tiếp tục"
+      ],
+      [
+        "Mẫu ADC ngoài 0–4095",
+        "Báo lỗi; không dùng như mẫu hợp lệ"
+      ],
+      [
+        "Reset hệ thống",
+        "Trạng thái bộ lọc/lịch/LED nhất quán, được mô tả trong README"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Chia module và luồng lấy mẫu/lọc/lệnh rõ ràng.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Alarm hysteresis đúng ở hai ngưỡng và khoảng giữ.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Scheduler không chặn; xử lý dữ liệu lỗi và reset.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp mã, bảng kiểm thử, ảnh/log và ghi rõ mô phỏng hay board thật.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "difficulty": "Trung cấp",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Mã nguồn .c/.h (tối đa 6 tệp), README .txt/.md nếu cần; ghi compiler/board hoặc mô phỏng và lệnh build.",
+      "1–2 ảnh kết quả chạy/debug; log các ca kiểm tra, kết quả thực tế và phần chưa đạt trong ghi chú hoặc .txt."
+    ],
+    "level": "intermediate",
+    "order": 8,
+    "prerequisites": [
+      "c07"
+    ]
+  },
+  {
+    "id": "s01",
+    "module": 1,
+    "title": "Sketch tấm đế có hai lỗ",
+    "minutes": 50,
+    "brief": "Dựng Sketch tấm chữ nhật 80×50 mm, tâm tại gốc; hai lỗ Ø8 có tâm (-25,0) và (25,0). Tất cả ràng buộc phải đầy đủ.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-1",
+      "label": "Giáo trình: Sketch, trang 4–22"
+    },
+    "learn": [
+      "Dùng MMGS, hình học đối xứng và kích thước để thể hiện ý đồ thiết kế.",
+      "Sketch màu đen/Fully Defined cần được kiểm tra cùng trạng thái solver; tránh khóa Fix hàng loạt để che thiếu quan hệ."
+    ],
+    "steps": [
+      "Tạo Part, chọn Top Plane và center rectangle tại gốc.",
+      "Vẽ hai đường tròn, gán vị trí và đường kính; ưu tiên symmetry/equal phù hợp.",
+      "Kiểm tra kéo thử hình, sửa chiều dài 80 thành 90 rồi trở lại 80; lưu file nguồn."
+    ],
+    "checks": [
+      [
+        "Đo bao ngoài và lỗ",
+        "80×50; Ø8; khoảng hai tâm 50 mm"
+      ],
+      [
+        "Trạng thái Sketch",
+        "Fully Defined, không lỗi over-defined"
+      ],
+      [
+        "Đổi chiều dài sang 90",
+        "Tâm tấm vẫn ở gốc, vị trí lỗ giữ theo kích thước đề"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Kích thước/hệ tọa độ và đơn vị đúng.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Quan hệ hình học thể hiện đối xứng, không ràng buộc thừa.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Sketch đầy đủ ràng buộc và sửa kích thước được.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp SLDPRT cùng ảnh kích thước và trạng thái Sketch.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "difficulty": "Cơ bản",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Tệp thiết kế theo đề: SLDPRT/SLDASM/SLDDRW, STEP hoặc PDF; tối đa 6 tệp, giữ đúng tên và đủ Part tham chiếu.",
+      "1–2 ảnh Sketch/feature tree/kích thước/kết quả kiểm tra; ghi phiên bản SOLIDWORKS và phần cần giảng viên góp ý."
+    ],
+    "level": "basic",
+    "order": 1,
+    "prerequisites": []
+  },
+  {
+    "id": "s02",
+    "module": 2,
+    "title": "Part tấm đế: Extrude và lỗ xuyên",
+    "minutes": 60,
+    "brief": "Tạo tấm 80×50×8 mm có hai lỗ xuyên Ø8 tại x=±25, y=0. Dùng Extruded Boss và Cut; chưa bo cạnh.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-2",
+      "label": "Giáo trình: Part và Extrude, trang 23–33"
+    },
+    "learn": [
+      "Feature tree ghi lịch sử thiết kế; đặt tên theo chức năng. Through All thể hiện lỗ xuyên tốt hơn chiều sâu cố định khi đổi bề dày.",
+      "Đối chiếu thể tích với mô hình lý tưởng: 80×50×8 − 2×π×4²×8 ≈ 31195,75 mm³."
+    ],
+    "steps": [
+      "Tạo phôi chữ nhật và Extrude 8 mm.",
+      "Tạo hai lỗ đúng vị trí bằng Cut Through All, đặt tên Base và Holes.",
+      "Đổi dày 8 lên 12, rebuild để kiểm tra lỗ vẫn xuyên; trở lại 8 rồi lưu SLDPRT/STEP."
+    ],
+    "checks": [
+      [
+        "Measure và section view",
+        "Đúng 80×50×8; hai lỗ xuyên Ø8"
+      ],
+      [
+        "Mass Properties: volume",
+        "Khoảng 31195,75 mm³, sai khác tối đa 1 mm³"
+      ],
+      [
+        "Rebuild sau thay bề dày",
+        "Không lỗi, lỗ vẫn xuyên"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Kích thước phôi và vị trí lỗ đúng.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Feature tree có Boss/Cut hợp lý, không lỗi rebuild.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Lỗ xuyên vẫn đúng khi thử đổi bề dày.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp SLDPRT, STEP và ảnh Measure/section hoặc volume.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "difficulty": "Cơ bản",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Tệp thiết kế theo đề: SLDPRT/SLDASM/SLDDRW, STEP hoặc PDF; tối đa 6 tệp, giữ đúng tên và đủ Part tham chiếu.",
+      "1–2 ảnh Sketch/feature tree/kích thước/kết quả kiểm tra; ghi phiên bản SOLIDWORKS và phần cần giảng viên góp ý."
+    ],
+    "level": "basic",
+    "order": 2,
+    "prerequisites": [
+      "s01"
+    ]
+  },
+  {
+    "id": "s03",
+    "module": 3,
+    "title": "Trục bậc bằng Revolve, Chamfer và Fillet",
+    "minutes": 75,
+    "brief": "Dựng trục đồng tâm dài 60 mm: đoạn Ø20 dài 40 mm, đoạn Ø12 dài 20 mm. Bo vai R1 và vát mép ngoài đầu Ø12 kích thước 1×45°.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-3",
+      "label": "Giáo trình: Revolve/Chamfer/Fillet, trang 34–45"
+    },
+    "learn": [
+      "Sketch tiết diện nằm một phía của trục quay và đóng kín. Đo đường kính, không nhầm bán kính.",
+      "Tách feature gốc và feature xử lý cạnh để dễ sửa; xác định rõ vai và đầu cần gia công."
+    ],
+    "steps": [
+      "Vẽ nửa tiết diện dọc trục, đặt chiều dài hai đoạn và bán kính 10/6.",
+      "Revolve 360° quanh centerline; chọn đúng cạnh vai để Fillet R1.",
+      "Chamfer mép tròn ngoài đầu nhỏ 1×45°; chụp section và feature tree."
+    ],
+    "checks": [
+      [
+        "Measure hình gốc",
+        "Tổng dài 60, Ø20/Ø12, hai đoạn 40/20"
+      ],
+      [
+        "Kiểm tra feature",
+        "Revolve 360°, Fillet R1 và Chamfer 1×45°"
+      ],
+      [
+        "Rebuild",
+        "Một solid body, không lỗi feature"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Tiết diện/trục quay và kích thước trục bậc đúng.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Bo vai và vát đúng cạnh, đúng giá trị.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Mô hình một solid body, feature sửa được.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp SLDPRT/STEP, ảnh section và feature tree rõ thông số.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "difficulty": "Cơ bản",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Tệp thiết kế theo đề: SLDPRT/SLDASM/SLDDRW, STEP hoặc PDF; tối đa 6 tệp, giữ đúng tên và đủ Part tham chiếu.",
+      "1–2 ảnh Sketch/feature tree/kích thước/kết quả kiểm tra; ghi phiên bản SOLIDWORKS và phần cần giảng viên góp ý."
+    ],
+    "level": "basic",
+    "order": 3,
+    "prerequisites": [
+      "s02"
+    ]
+  },
+  {
+    "id": "s04",
+    "module": 4,
+    "title": "Plane nghiêng và lỗ cắt theo pháp tuyến",
+    "minutes": 80,
+    "brief": "Tạo khối 60×40×20 mm có đáy trên Top Plane. Tạo plane nghiêng 30° quanh một cạnh dài trên mặt trên; dùng plane ấy để cắt lỗ Ø6 đi xuyên khối.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-4",
+      "label": "Giáo trình: hình học tham chiếu, trang 46–55"
+    },
+    "learn": [
+      "Plane nghiêng cần mặt/phẳng gốc và trục xoay rõ ràng. Góc plane khác góc với pháp tuyến.",
+      "Hướng Extruded Cut vuông góc Sketch; dùng section để xác nhận đường cắt thực sự giao khối."
+    ],
+    "steps": [
+      "Tạo khối bằng Extrude, chọn cạnh dài trên mặt trên làm bản lề; ghi cạnh/mặt tham chiếu.",
+      "Tạo Plane 30°, sketch đường tròn Ø6 trên plane tại vị trí mà trục lỗ giao khối; ràng buộc vị trí và ghi kích thước đã chọn.",
+      "Cut Through All (hai phía nếu cần); chụp section cho thấy đường cắt và đo góc plane."
+    ],
+    "checks": [
+      [
+        "Kích thước khối/plane",
+        "60×40×20; plane lệch 30° so với mặt trên"
+      ],
+      [
+        "Section qua tâm lỗ",
+        "Lỗ xuyên khối, đường kính vuông góc trục là 6 mm"
+      ],
+      [
+        "Edit plane và rebuild",
+        "Quan hệ tham chiếu rõ, không mất feature"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Khối và plane 30° đúng, tham chiếu được chỉ rõ.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Sketch Ø6 có vị trí xác định và đường cắt giao khối.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Lỗ theo pháp tuyến plane, xuyên khối như section chứng minh.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp file nguồn, ảnh plane/section và kích thước vị trí đã chọn.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "difficulty": "Cơ bản",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Tệp thiết kế theo đề: SLDPRT/SLDASM/SLDDRW, STEP hoặc PDF; tối đa 6 tệp, giữ đúng tên và đủ Part tham chiếu.",
+      "1–2 ảnh Sketch/feature tree/kích thước/kết quả kiểm tra; ghi phiên bản SOLIDWORKS và phần cần giảng viên góp ý."
+    ],
+    "level": "basic",
+    "order": 4,
+    "prerequisites": [
+      "s03"
+    ]
+  },
+  {
+    "id": "s05",
+    "module": 5,
+    "title": "Sweep theo đường dẫn hai đoạn",
+    "minutes": 75,
+    "brief": "Tạo thanh tròn Ø6 theo hai đoạn tâm dài 40 và 30 mm vuông góc trong cùng plane, nối góc bằng Sketch Fillet R10.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-5",
+      "label": "Giáo trình: Sweep/Loft, trang 56–65"
+    },
+    "learn": [
+      "Profile phải liên hệ đúng với đầu path; plane profile vuông góc tiếp tuyến đầu đường dẫn.",
+      "Góc gãy được thay bởi cung tiếp tuyến R10; hai độ dài 40/30 đo đến giao điểm lý thuyết trước bo."
+    ],
+    "steps": [
+      "Vẽ path chữ L 40/30 trước bo, tạo Fillet R10 và ràng buộc cung tiếp tuyến.",
+      "Tạo plane/profile Ø6 tại đầu path, dùng Pierce/Coincident phù hợp.",
+      "Sweep solid, kiểm tra tiết diện và hướng; lưu file và ảnh cả path/profile."
+    ],
+    "checks": [
+      [
+        "Path trước bo",
+        "Hai đoạn vuông góc 40/30; R10 tiếp tuyến"
+      ],
+      [
+        "Đo tiết diện",
+        "Ø6, không bị xoắn hoặc tự giao"
+      ],
+      [
+        "Số body/rebuild",
+        "Một solid body, không lỗi"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Đường dẫn và cung bo đúng kích thước/tiếp tuyến.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Profile Ø6 tại đầu path, liên hệ hình học rõ.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Sweep tạo solid liên tục, không tự giao.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp SLDPRT/STEP và ảnh path, profile, kết quả.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "difficulty": "Trung cấp",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Tệp thiết kế theo đề: SLDPRT/SLDASM/SLDDRW, STEP hoặc PDF; tối đa 6 tệp, giữ đúng tên và đủ Part tham chiếu.",
+      "1–2 ảnh Sketch/feature tree/kích thước/kết quả kiểm tra; ghi phiên bản SOLIDWORKS và phần cần giảng viên góp ý."
+    ],
+    "level": "intermediate",
+    "order": 5,
+    "prerequisites": [
+      "s04"
+    ]
+  },
+  {
+    "id": "s06",
+    "module": 5,
+    "title": "Loft chuyển tiếp tròn – chữ nhật",
+    "minutes": 80,
+    "brief": "Tạo khối đặc chuyển từ hình tròn Ø30 sang chữ nhật 40×25 trên hai plane song song cách 50 mm, hai profile đồng tâm.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-5",
+      "label": "Giáo trình: Sweep/Loft, trang 56–65"
+    },
+    "learn": [
+      "Loft nối các tiết diện theo thứ tự. Điểm nối/connector ảnh hưởng xoắn; xem preview trước khi chấp nhận.",
+      "Hai profile đóng kín tạo solid; bài này không yêu cầu Shell hay kết cấu thành mỏng."
+    ],
+    "steps": [
+      "Tạo hai plane cách nhau 50, profile tròn/chữ nhật đầy đủ kích thước và đồng tâm.",
+      "Loft Boss/Base, chỉnh connector nếu thấy xoắn.",
+      "Dùng section và measure kiểm tra, xuất STEP rồi mở lại để so sánh hình dạng."
+    ],
+    "checks": [
+      [
+        "Đo hai đầu và khoảng plane",
+        "Ø30, 40×25, cách 50 mm, tâm thẳng hàng"
+      ],
+      [
+        "Section/preview",
+        "Khối nối liên tục, không tự giao hoặc xoắn bất thường"
+      ],
+      [
+        "Mở STEP",
+        "Một solid body với kích thước hai đầu giữ nguyên"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Profile và khoảng plane đúng đề.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Connector/Loft tạo chuyển tiếp hợp lý.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Một solid body, rebuild và xuất STEP đúng.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp nguồn/STEP và ảnh profile, section, kiểm tra mở lại.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "difficulty": "Trung cấp",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Tệp thiết kế theo đề: SLDPRT/SLDASM/SLDDRW, STEP hoặc PDF; tối đa 6 tệp, giữ đúng tên và đủ Part tham chiếu.",
+      "1–2 ảnh Sketch/feature tree/kích thước/kết quả kiểm tra; ghi phiên bản SOLIDWORKS và phần cần giảng viên góp ý."
+    ],
+    "level": "intermediate",
+    "order": 6,
+    "prerequisites": [
+      "s05"
+    ]
+  },
+  {
+    "id": "s07",
+    "module": 6,
+    "title": "Assembly trục và bạc có một bậc quay",
+    "minutes": 100,
+    "brief": "Lắp trục Ø10×40 vào bạc Ø20 ngoài, Ø10 trong, dài 20 mm. Cố định bạc; trục đồng tâm và một đầu ngang mặt đầu bạc; để trục còn quay quanh trục tâm.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-6",
+      "label": "Giáo trình: Assembly/Drawing, trang 66–74"
+    },
+    "learn": [
+      "Fixed một chi tiết làm chuẩn; concentric và coincident khống chế tịnh tiến nhưng vẫn có thể để tự do quay.",
+      "Assembly tham chiếu các Part ngoài. Khi nộp phải kèm đủ Part cùng tên; không chỉ gửi file SLDASM."
+    ],
+    "steps": [
+      "Tạo shaft.SLDPRT và sleeve.SLDPRT đúng kích thước; đây là bài hình học danh nghĩa, chưa chỉ định dung sai lắp ghép.",
+      "Tạo assembly, cố định bạc, thêm concentric và coincident phù hợp; không bật Lock rotation.",
+      "Kéo thử trục, kiểm tra mate/Interference Detection; lưu ba file trong cùng thư mục."
+    ],
+    "checks": [
+      [
+        "Kéo trục dọc tâm",
+        "Không tịnh tiến"
+      ],
+      [
+        "Quay trục quanh tâm",
+        "Còn đúng bậc quay mong muốn"
+      ],
+      [
+        "Kiểm tra giao thoa",
+        "Không có thể tích giao thoa dương; hai mặt danh nghĩa tiếp xúc"
+      ],
+      [
+        "Mở lại từ thư mục nộp",
+        "Không thiếu Part, không mate lỗi"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Hai Part đúng kích thước danh nghĩa.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Mates giữ vị trí, còn bậc quay theo đề.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Không giao thoa dương hoặc mate lỗi; mở lại đủ tham chiếu.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp SLDASM, hai SLDPRT và ảnh mates/kết quả kiểm tra.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "difficulty": "Trung cấp",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Tệp thiết kế theo đề: SLDPRT/SLDASM/SLDDRW, STEP hoặc PDF; tối đa 6 tệp, giữ đúng tên và đủ Part tham chiếu.",
+      "1–2 ảnh Sketch/feature tree/kích thước/kết quả kiểm tra; ghi phiên bản SOLIDWORKS và phần cần giảng viên góp ý."
+    ],
+    "level": "intermediate",
+    "order": 7,
+    "prerequisites": [
+      "s06"
+    ]
+  },
+  {
+    "id": "s08",
+    "module": 6,
+    "title": "Drawing và hồ sơ bàn giao tấm đế",
+    "minutes": 100,
+    "brief": "Từ tấm đế ở bài S02, lập Drawing A4 có ba hình chiếu và isometric, kích thước cần chế tạo, xuất PDF và STEP để giảng viên kiểm tra.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-6",
+      "label": "Giáo trình: Drawing/đồ án, trang 66–74"
+    },
+    "learn": [
+      "Chọn và ghi rõ quy ước chiếu, tỉ lệ, đơn vị. Kích thước phải đủ xác định hình học nhưng không lặp mâu thuẫn.",
+      "Đề dùng kích thước danh nghĩa cho học tập; chỉ áp dụng dung sai/vật liệu theo hướng dẫn giảng viên, không tự coi là bản vẽ sẵn sàng sản xuất."
+    ],
+    "steps": [
+      "Dựng hoặc mở lại tấm S02 80×50×8, hai lỗ Ø8 cách tâm ±25.",
+      "Tạo Drawing A4; đặt ba hình chiếu, isometric và kích thước bao ngoài/lỗ/vị trí; ghi tỉ lệ, đơn vị, mã bài và người làm.",
+      "Xuất PDF, mở lại ở mức 100%; xuất STEP; mở bộ SLDPRT/SLDDRW từ thư mục nộp để kiểm tra tham chiếu."
+    ],
+    "checks": [
+      [
+        "Đọc PDF",
+        "Chữ/kích thước không chồng hoặc bị cắt; đủ chiều dài/rộng/dày"
+      ],
+      [
+        "Thông số lỗ",
+        "2×Ø8; vị trí xác định được từ kích thước trên bản vẽ"
+      ],
+      [
+        "Đối chiếu Drawing và Part",
+        "Hình chiếu nhất quán, cùng phiên bản mô hình"
+      ],
+      [
+        "Mở lại bộ nộp",
+        "SLDDRW tìm được Part, STEP giữ hình dạng, PDF đọc được"
+      ]
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Bố cục hình chiếu và quy ước/tỉ lệ rõ ràng.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Kích thước xác định đầy đủ phôi, lỗ và vị trí.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Drawing/Part nhất quán, liên kết không bị mất.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Nộp SLDPRT, SLDDRW, PDF, STEP và ảnh bản vẽ dễ đọc.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "difficulty": "Trung cấp",
+    "reference": "",
+    "passScore": 75,
+    "deliverables": [
+      "Tệp thiết kế theo đề: SLDPRT/SLDASM/SLDDRW, STEP hoặc PDF; tối đa 6 tệp, giữ đúng tên và đủ Part tham chiếu.",
+      "1–2 ảnh Sketch/feature tree/kích thước/kết quả kiểm tra; ghi phiên bản SOLIDWORKS và phần cần giảng viên góp ý."
+    ],
+    "level": "intermediate",
+    "order": 8,
+    "prerequisites": [
+      "s07"
+    ]
+  },
+  {
+    "id": "c09",
+    "title": "Giao thức khung nhị phân và phục hồi lỗi",
+    "minutes": 150,
+    "brief": "Viết parser nhận từng byte: AA 55 | LEN | PAYLOAD | CHECKSUM. LEN từ 1 đến 16; CHECKSUM là tổng LEN và payload modulo 256. Timeout giữa hai byte trong khung là 100 ms.",
+    "learn": [
+      "Tách trạng thái tìm header, đọc độ dài, nhận payload và kiểm tra tổng. Chỉ phát sự kiện khi nhận đủ khung hợp lệ.",
+      "Tổng modulo 256 chỉ phát hiện một số lỗi, không phải bảo mật. Khi LEN/checksum sai, quay lại tìm header ở byte kế tiếp; timeout phải được kiểm tra cả lúc không nhận byte."
+    ],
+    "steps": [
+      "Định nghĩa parser_feed(byte,now) và parser_tick(now); dùng bộ đệm cố định, không cấp phát động.",
+      "Giữ byte AA thứ hai làm đầu header nếu chuỗi AA AA 55 xuất hiện. Không diễn giải AA 55 trong payload như header mới.",
+      "Viết bộ phát giả lập các khung, chèn lỗi/timeout và chứng minh parser nhận lại khung hợp lệ sau lỗi."
+    ],
+    "checks": [
+      [
+        "AA 55 02 10 20 32",
+        "Một payload [10,20] (hex)"
+      ],
+      [
+        "AA 55 02 10 20 33 rồi khung hợp lệ",
+        "Khung sai bị loại; khung tiếp theo nhận đúng"
+      ],
+      [
+        "LEN=0 hoặc 17",
+        "Từ chối trước khi ghi payload"
+      ],
+      [
+        "Dừng giữa khung >=100 ms",
+        "Reset khung dở; không phát payload thiếu"
+      ],
+      [
+        "Chia luồng ở mọi vị trí, AA AA 55",
+        "Không phụ thuộc kích thước gói nhận; xử lý header chồng đúng"
+      ]
+    ],
+    "deliverables": [
+      "parser.c/.h, test.c và README về trạng thái/timeout.",
+      "Ảnh/log gồm khung đúng, checksum sai, LEN sai, timeout và phục hồi."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Máy trạng thái phát đúng payload và không nhầm header trong dữ liệu.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Giới hạn buffer/LEN chặt chẽ, không đọc hoặc ghi vượt miền.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Phục hồi đúng khi lỗi/timeout, kể cả tick quay vòng.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Bộ kiểm thử có đầu vào/đầu ra thực tế cho các ca phân mảnh và lỗi.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "module": 9,
+    "difficulty": "Nâng cao",
+    "level": "advanced",
+    "order": 9,
+    "reference": "",
+    "version": 1,
+    "passScore": 75,
+    "prerequisites": [
+      "c08"
+    ]
+  },
+  {
+    "id": "c10",
+    "title": "Scheduler hợp tác với đo độ trễ",
+    "minutes": 150,
+    "brief": "Thiết kế scheduler không chặn cho ba tác vụ chu kỳ 10, 100 và 500 ms. Thứ tự khi cùng hạn: A, B, C. Mỗi lần gọi chỉ chạy mỗi tác vụ tối đa một lần và bỏ các kỳ bị lỡ.",
+    "learn": [
+      "Tách due time khỏi thời gian thực hiện, dùng elapsed unsigned và ghi độ trễ. Giới hạn khoảng đo nhỏ hơn một chu kỳ uint32_t đầy đủ.",
+      "Chính sách đề: chạy lần đầu tại tick=chu kỳ; khi trễ, cập nhật last=now. Scheduler hợp tác không thể cứu hệ thống nếu một task chặn lâu."
+    ],
+    "steps": [
+      "Tạo bảng task với callback, period, last, count và lateness_max; khởi tạo last=0.",
+      "Dùng clock giả lập để kiểm tra lịch chính xác; mô phỏng một task trễ để đo tác động lên task sau.",
+      "Thử tick quay vòng và gọi cùng tick hai lần; nêu giới hạn thời gian chạy của từng callback."
+    ],
+    "checks": [
+      [
+        "Tick mỗi 1 ms từ 0 đến 1000",
+        "A chạy 100, B 10, C 2 lần; cùng hạn chạy A→B→C"
+      ],
+      [
+        "Tick nhảy 0→550",
+        "Mỗi task chạy một lần, không vòng bù vô hạn; last=550"
+      ],
+      [
+        "Gọi lại tick=550",
+        "Không chạy lặp task vừa chạy"
+      ],
+      [
+        "last gần UINT32_MAX rồi now quay vòng",
+        "Đủ elapsed thì chạy, không kích hoạt sớm"
+      ]
+    ],
+    "deliverables": [
+      "scheduler.c/.h và test/main; bảng thời điểm chạy/lateness .txt.",
+      "Ảnh kết quả thử; giải thích giới hạn scheduler hợp tác và phương án xử lý task chậm."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Lịch/ưu tiên và chính sách bỏ kỳ lỡ đúng hợp đồng.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Không chặn/vòng bù vô hạn; không chạy lặp cùng tick.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Tính thời gian qua wrap và số liệu lateness đúng.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Log mô phỏng cả tải thường/tải trễ, phân tích giới hạn rõ.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "module": 10,
+    "difficulty": "Nâng cao",
+    "level": "advanced",
+    "order": 10,
+    "reference": "",
+    "version": 1,
+    "passScore": 75,
+    "prerequisites": [
+      "c09"
+    ]
+  },
+  {
+    "id": "c11",
+    "title": "Lưu cấu hình hai bản sao chịu lỗi ghi",
+    "minutes": 180,
+    "brief": "Mô phỏng hai slot cấu hình trong mảng byte: version, sequence uint32_t, giá trị ngưỡng 0–3300 mV, checksum và commit marker. Cắt điện giả lập ở từng bước ghi; luôn phục hồi bản đã commit gần nhất.",
+    "learn": [
+      "Không ghi struct trực tiếp vì padding/endianness phụ thuộc nền tảng. Quy định cách serialize từng trường; marker commit ghi cuối.",
+      "Bài dùng RAM giả lập storage, không khẳng định tính nguyên tử của Flash thật. Trong bài sequence chỉ tăng và chưa xét wrap; ghi rõ giới hạn này."
+    ],
+    "steps": [
+      "Định nghĩa bố trí byte và checksum đơn giản, kiểm tra version, ngưỡng, marker khi đọc.",
+      "Ghi bản mới vào slot còn lại, kiểm tra đọc lại rồi commit cuối; không phá slot hợp lệ trước đó.",
+      "Chạy thử dừng tại mọi điểm ghi; sửa một byte, marker hoặc version để thử fallback; nêu cách áp dụng theo datasheet Flash sau này."
+    ],
+    "checks": [
+      [
+        "Hai slot trống/hỏng",
+        "Nạp cấu hình mặc định và báo nguồn mặc định"
+      ],
+      [
+        "Slot A seq=4 hợp lệ, B seq=5 đang ghi",
+        "Khởi động dùng A"
+      ],
+      [
+        "B seq=5 hoàn tất commit",
+        "Dùng B"
+      ],
+      [
+        "B checksum/version/ngưỡng sai",
+        "Không dùng B, phục hồi A"
+      ],
+      [
+        "Ngắt mô phỏng sau từng bước ghi",
+        "Không nhận bản ghi một phần như hợp lệ"
+      ]
+    ],
+    "deliverables": [
+      "config_store.c/.h và test, mô tả định dạng byte/commit.",
+      "Ma trận điểm lỗi và kết quả phục hồi; ảnh/log chạy mô phỏng."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Serialization và validation rõ, không phụ thuộc padding struct.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Chọn bản hợp lệ mới nhất và mặc định đúng.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Ghi commit cuối, phục hồi được ở các điểm lỗi mô phỏng.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Ma trận lỗi đầy đủ; nêu rõ khác biệt giữa RAM mô phỏng và Flash thật.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "module": 11,
+    "difficulty": "Nâng cao",
+    "level": "advanced",
+    "order": 11,
+    "reference": "",
+    "version": 1,
+    "passScore": 75,
+    "prerequisites": [
+      "c10"
+    ]
+  },
+  {
+    "id": "c12",
+    "title": "Đồ án nâng cao: firmware thiết bị đo có phục hồi lỗi",
+    "minutes": 240,
+    "brief": "Tích hợp lấy mẫu, lọc, alarm, scheduler, parser nhị phân và cấu hình hai slot. Có lệnh đọc trạng thái, đổi ngưỡng, lưu cấu hình; mỗi yêu cầu phải phản hồi thành công hoặc lỗi rõ ràng.",
+    "learn": [
+      "Tách phần driver, logic và giao thức. Kiểm tra ranh giới module và lỗi hệ thống thay vì chỉ chạy từng hàm đơn lẻ.",
+      "Bộ kiểm thử tái lập cần lưu đầu vào, thời điểm, trạng thái ban đầu và đầu ra mong đợi; phân biệt bằng chứng mô phỏng với board thật."
+    ],
+    "steps": [
+      "Viết đặc tả mã lệnh/payload/phản hồi và sơ đồ module; dùng tối đa 6 tệp nộp có thể đọc cùng README.",
+      "Tích hợp C08–C11; chọn ngưỡng alarm hợp lệ, từ chối cấu hình ngoài miền và giữ cấu hình cũ khi lưu lỗi.",
+      "Chạy kịch bản 5 phút giả lập gồm nhiễu giao thức, dữ liệu ADC lỗi, task trễ và mất nguồn mô phỏng; tổng hợp kết quả."
+    ],
+    "checks": [
+      [
+        "Khung sai xen giữa lệnh đúng",
+        "Không đổi cấu hình từ khung sai; vẫn nhận lệnh sau"
+      ],
+      [
+        "Ngưỡng ngoài miền hoặc payload thiếu",
+        "Phản hồi lỗi, giữ cấu hình trước"
+      ],
+      [
+        "Khởi động lại sau commit và sau ghi dở",
+        "Phục hồi đúng bản hợp lệ"
+      ],
+      [
+        "Đọc STATUS khi lấy mẫu hoạt động",
+        "Phản hồi mà không làm dừng lịch lấy mẫu"
+      ],
+      [
+        "Kịch bản 5 phút với lỗi",
+        "Không treo/tràn buffer; log chỉ ra mỗi lỗi và phục hồi"
+      ]
+    ],
+    "deliverables": [
+      "Mã C/H, README giao thức/lệnh build và bộ ca tích hợp, tối đa 6 tệp.",
+      "1–2 ảnh, log thử 5 phút và bảng hạn chế/kế hoạch kiểm tra trên board."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Kiến trúc module và giao thức nhất quán, có thể build lại.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Các chức năng đo/lọc/alarm/lệnh/cấu hình tích hợp đúng.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Xử lý và phục hồi lỗi theo các ca tích hợp.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Hồ sơ thử tái lập, bằng chứng và hạn chế trình bày rõ.",
+        "points": 25
+      }
+    ],
+    "track": "embedded",
+    "module": 12,
+    "difficulty": "Nâng cao",
+    "level": "advanced",
+    "order": 12,
+    "reference": "",
+    "version": 1,
+    "passScore": 75,
+    "prerequisites": [
+      "c11"
+    ]
+  },
+  {
+    "id": "s09",
+    "title": "Thiết kế tham số và cấu hình họ chi tiết",
+    "minutes": 140,
+    "brief": "Tạo họ tấm đế ba cấu hình L=60/80/100 mm, W=40, T=6; hai lỗ Ø6 cách mỗi đầu 10 mm và nằm trên trục giữa. Dùng biến toàn cục/equations và configurations.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-2",
+      "label": "Ôn Part/Extrude, trang 23–33; phần cấu hình do người chủ trì hướng dẫn"
+    },
+    "learn": [
+      "Dùng một tham số làm nguồn cho các kích thước phụ thuộc; tránh nhập tay tọa độ lỗ cho từng cấu hình.",
+      "Đề dùng kích thước danh nghĩa; đổi cấu hình phải rebuild đủ và không làm mất tham chiếu Drawing."
+    ],
+    "steps": [
+      "Dựng Part có gốc ở tâm, đặt biến L/W/T và biểu thức x_lỗ=±(L/2−10).",
+      "Tạo ba cấu hình Short/Standard/Long; kiểm tra các feature không lỗi ở cả ba.",
+      "Tạo Drawing cho Standard, chuyển thử cấu hình rồi trở lại; xuất STEP từng cấu hình và bảng kích thước."
+    ],
+    "checks": [
+      [
+        "L=60/80/100",
+        "Khoảng hai tâm lỗ lần lượt 40/60/80 mm"
+      ],
+      [
+        "Đổi L trong cấu hình",
+        "Vị trí lỗ theo biểu thức, luôn cách đầu 10 mm"
+      ],
+      [
+        "Rebuild ba cấu hình",
+        "Một solid body, không dangling dimensions/feature lỗi"
+      ]
+    ],
+    "deliverables": [
+      "SLDPRT ba cấu hình, SLDDRW/PDF và tối đa ba STEP; chọn tối đa 6 tệp theo yêu cầu chủ trì.",
+      "Ảnh bảng cấu hình/equations và bảng kiểm kích thước từng cấu hình."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Quan hệ tham số đúng và không nhập tọa độ độc lập gây lệch.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Ba cấu hình rebuild đúng, feature và lỗ ổn định.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Bản vẽ/thông số xuất đúng cấu hình được ghi rõ.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Bảng đối chiếu đủ kích thước và bằng chứng sửa tham số.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "module": 9,
+    "difficulty": "Nâng cao",
+    "level": "advanced",
+    "order": 9,
+    "reference": "",
+    "version": 1,
+    "passScore": 75,
+    "prerequisites": [
+      "s08"
+    ]
+  },
+  {
+    "id": "s10",
+    "title": "Giá đỡ tấm kim loại và bản trải",
+    "minutes": 160,
+    "brief": "Thiết kế giá U bằng Sheet Metal: phần đáy phẳng giữa hai đường tiếp tuyến dài 60 mm, rộng 30 mm; hai vách 20 mm, tấm dày 1,5 mm, bán kính uốn trong 1,5 mm, giả định K=0,40.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-6",
+      "label": "Ôn hồ sơ Drawing, trang 66–74; Sheet Metal học cùng người chủ trì"
+    },
+    "learn": [
+      "Chiều dài phôi phụ thuộc quy ước đo và bend allowance. K=0,40 là giả định bài tập, không thay dữ liệu công nghệ của xưởng.",
+      "Xác định rõ vách 20 mm đo phần thẳng từ tiếp tuyến đến mép tự do; mỗi uốn 90° có BA=(π/2)×(R+K×T)."
+    ],
+    "steps": [
+      "Tạo Base Flange và hai Edge Flange cùng chiều; ghi cách đặt kích thước phần thẳng đúng đề.",
+      "Đặt T/R/K, kiểm tra Flat-Pattern và tổng chiều dài theo BA; ghi nếu cách định nghĩa flange trong phần mềm khác.",
+      "Tạo Drawing trạng thái gập/trải, kích thước và đường uốn; xuất PDF/STEP."
+    ],
+    "checks": [
+      [
+        "Một góc uốn 90° với R=1,5; K=0,4; T=1,5",
+        "BA≈3,299 mm"
+      ],
+      [
+        "Phôi theo các đoạn thẳng 60+20+20",
+        "Chiều dài≈106,597 mm, rộng 30 mm theo quy ước đề"
+      ],
+      [
+        "Gập/trải và rebuild",
+        "Không tự giao, chiều dày nhất quán 1,5 mm"
+      ],
+      [
+        "Bản vẽ trải",
+        "Có hướng/đường uốn và ghi T/R/K giả định"
+      ]
+    ],
+    "deliverables": [
+      "SLDPRT, SLDDRW/PDF, STEP và bảng tính bend allowance .txt.",
+      "Ảnh Sheet Metal parameters, Flat-Pattern và trạng thái gập."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Mô hình Sheet Metal và quy ước kích thước đúng.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "T/R/K, bend allowance và kích thước trải được đối chiếu.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Gập/trải ổn định, không tự giao hoặc sai chiều dày.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Hồ sơ có hướng uốn và ghi giả định để chủ trì kiểm tra.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "module": 10,
+    "difficulty": "Nâng cao",
+    "level": "advanced",
+    "order": 10,
+    "reference": "",
+    "version": 1,
+    "passScore": 75,
+    "prerequisites": [
+      "s09"
+    ]
+  },
+  {
+    "id": "s11",
+    "title": "Assembly cơ cấu trượt và kiểm tra hành trình",
+    "minutes": 180,
+    "brief": "Tạo một ray, con trượt và chốt dẫn hướng; con trượt chỉ được tịnh tiến theo một trục trong khoảng 0–40 mm. Thiết kế kích thước phù hợp, nêu khe hở danh nghĩa và không dùng mô phỏng lực.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-6",
+      "label": "Ôn Assembly/mates, trang 66–74"
+    },
+    "learn": [
+      "Ràng buộc phải loại các bậc tự do ngoài chuyển động mong muốn; tránh Fix con trượt để che thiếu mates.",
+      "Kiểm tra các vị trí đầu/cuối và giữa hành trình; không suy ra độ bền hoặc khả năng chịu tải từ việc kéo mô hình được."
+    ],
+    "steps": [
+      "Đề xuất bản phác kích thước ray/con trượt/chốt và khe hở; tạo tối đa ba Part.",
+      "Cố định ray, thêm mates phù hợp và Limit Distance 0–40; ghi bậc tự do còn lại.",
+      "Kiểm tra Interference ở vị trí 0,10,20,30,40 mm; điều chỉnh và lập bảng hành trình."
+    ],
+    "checks": [
+      [
+        "Kéo con trượt",
+        "Chỉ tịnh tiến theo trục chọn, không quay hoặc lệch ngang"
+      ],
+      [
+        "Hai đầu hành trình",
+        "Dừng tại 0 và 40 mm"
+      ],
+      [
+        "Năm vị trí kiểm tra",
+        "Không có thể tích giao thoa dương; vùng tiếp xúc được giải thích"
+      ],
+      [
+        "Mở lại Assembly cùng các Part",
+        "Không mất tham chiếu/mate"
+      ]
+    ],
+    "deliverables": [
+      "SLDASM và tối đa ba SLDPRT; PDF/bảng .txt ghi kích thước và kết quả kiểm tra.",
+      "1–2 ảnh thể hiện mates, hai đầu hành trình hoặc bảng interference."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Thiết kế hình học/khe hở có kích thước và cơ sở rõ.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Mates giữ đúng một bậc tịnh tiến với giới hạn 0–40.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Có bảng kiểm giao thoa cả hành trình và giải thích tiếp xúc.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Bộ file mở lại đủ tham chiếu; không tuyên bố đã kiểm định tải.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "module": 11,
+    "difficulty": "Nâng cao",
+    "level": "advanced",
+    "order": 11,
+    "reference": "",
+    "version": 1,
+    "passScore": 75,
+    "prerequisites": [
+      "s10"
+    ]
+  },
+  {
+    "id": "s12",
+    "title": "Đồ án nâng cao: vỏ thiết bị cho bo mạch",
+    "minutes": 240,
+    "brief": "Thiết kế thân, nắp và mô hình bo tham chiếu 40×30×1,6 mm; chiều cao linh kiện tối đa 10 mm. Đề xuất gối đỡ, chỗ bắt vít và cửa cổng kết nối; khoảng hở danh nghĩa tới linh kiện tối thiểu 1 mm.",
+    "reading": {
+      "slug": "solidworks-lo-trinh-6",
+      "label": "Assembly/Drawing/đồ án, trang 66–74"
+    },
+    "learn": [
+      "Tách yêu cầu cơ–điện: vị trí bo, vùng cấm, không gian thao tác/cáp và trình tự lắp. Những kích thước chưa được cho phải có giả định được người chủ trì duyệt.",
+      "Kiểm tra hình học và hồ sơ không thay dung sai, vật liệu, công nghệ chế tạo hay thử nghiệm sản phẩm thật."
+    ],
+    "steps": [
+      "Lập bảng yêu cầu/giả định về vị trí lỗ và cổng; tạo mô hình bo tham chiếu, thân và nắp bằng tối đa ba Part.",
+      "Tạo Assembly, kiểm tra gối đỡ/cửa cổng/trình tự đóng nắp; dùng section và interference để đối chiếu khoảng hở.",
+      "Bàn giao SLDASM, ba Part, PDF bản vẽ và bảng kiểm .txt (tối đa 6 tệp); ghi hạn chế và thay đổi cần xác nhận trước chế tạo."
+    ],
+    "checks": [
+      [
+        "Bo tham chiếu",
+        "40×30×1,6 mm, vùng linh kiện cao 10 mm"
+      ],
+      [
+        "Khoảng hở tới linh kiện",
+        "Tối thiểu 1 mm theo mô hình danh nghĩa; có vị trí đo"
+      ],
+      [
+        "Assembly/đóng nắp",
+        "Không giao thoa dương ở phần không chủ đích, có đường lắp tháo"
+      ],
+      [
+        "Bộ hồ sơ",
+        "Mở lại đủ file, kích thước cửa/cố định thống nhất với bảng giả định"
+      ]
+    ],
+    "deliverables": [
+      "Một Assembly, ba Part, PDF Drawing và checklist .txt; giữ đúng tên tham chiếu.",
+      "1–2 ảnh section/Measure và bảng kết quả; liệt kê việc cần người chủ trì xác nhận."
+    ],
+    "criteria": [
+      {
+        "id": "c1",
+        "text": "Bảng yêu cầu/giả định và mô hình bo đúng đề.",
+        "points": 25
+      },
+      {
+        "id": "c2",
+        "text": "Vỏ/gối/cổng và khoảng hở có bằng chứng đo.",
+        "points": 25
+      },
+      {
+        "id": "c3",
+        "text": "Assembly, khả năng lắp tháo và kiểm tra giao thoa rõ.",
+        "points": 25
+      },
+      {
+        "id": "c4",
+        "text": "Hồ sơ đầy đủ, mở lại được và nêu giới hạn trước chế tạo.",
+        "points": 25
+      }
+    ],
+    "track": "solidworks",
+    "module": 12,
+    "difficulty": "Nâng cao",
+    "level": "advanced",
+    "order": 12,
+    "reference": "",
+    "version": 1,
+    "passScore": 75,
+    "prerequisites": [
+      "s11"
+    ]
+  }
+]
